@@ -1,7 +1,9 @@
 package com.github.curriculeon;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author leon on 16/11/2018.
@@ -22,10 +24,23 @@ public class Document implements DocumentInterface {
 
     @Override
     public void write(String contentToBeWritten) {
+        try {
+            fileWriter.write(contentToBeWritten);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void write(Integer lineNumber, String valueToBeWritten) {
+        List<String> myList = toList();
+        myList.set(lineNumber,valueToBeWritten);
+        StringBuilder result = new StringBuilder();
+        for(String s : myList){
+            result.append(s).append("\n");
+        }
+        overWrite(result.toString().trim());
     }
 
     @Override
@@ -35,8 +50,18 @@ public class Document implements DocumentInterface {
 
     @Override
     public String read() {
+        StringBuilder result = new StringBuilder();
+        try (Scanner scanner = new Scanner(new FileReader(file.getAbsolutePath()))) {
+            while (scanner.hasNextLine()){
+                result.append(scanner.nextLine()+"\n");
+            }
+            return result.toString().trim();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
 
     @Override
     public void replaceAll(String stringToReplace, String replacementString) {
@@ -44,9 +69,26 @@ public class Document implements DocumentInterface {
 
     @Override
     public void overWrite(String content) {
+        try {
+            FileWriter overWriter = new FileWriter(file, false);
+            overWriter.write(content);
+            overWriter.flush();
+            overWriter.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public List<String> toList() {
+        List<String> result = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new FileReader(file.getAbsolutePath()))) {
+            while (scanner.hasNextLine()){
+                result.add(scanner.nextLine());
+            }
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
