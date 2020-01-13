@@ -21,7 +21,6 @@ public class AlphaCharDocument extends Document {
 
     private Boolean isAlpha(String s) {
         String regex  = "^[a-zA-Z\\s]*$";
-        System.out.println(s +s.matches(regex));
         return s.matches(regex);
     }
 }

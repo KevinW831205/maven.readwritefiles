@@ -12,9 +12,15 @@ public class NumericCharDocument extends Document {
 
     @Override
     public void write(String contentToBeWritten) {
+        if (isNumeric(contentToBeWritten)) {
+            super.write(contentToBeWritten);
+            return;
+        }
+        throw new IllegalArgumentException(contentToBeWritten);
     }
 
     private Boolean isNumeric(String s) {
-        return null;
+        String regex = "^[0-9]*$";
+        return s.matches(regex);
     }
 }
