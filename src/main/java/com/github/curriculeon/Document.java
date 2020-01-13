@@ -65,6 +65,9 @@ public class Document implements DocumentInterface {
 
     @Override
     public void replaceAll(String stringToReplace, String replacementString) {
+        String result = read();
+        result = result.replaceAll(stringToReplace,replacementString);
+        overWrite(result);
     }
 
     @Override
