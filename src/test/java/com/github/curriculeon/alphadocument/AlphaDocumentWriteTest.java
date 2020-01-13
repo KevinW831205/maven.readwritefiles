@@ -55,4 +55,18 @@ public class AlphaDocumentWriteTest {
         // then
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void test() throws IOException{
+        String expected = "Thequickbrownfoxy";
+        Document documentWriter = new AlphaCharDocument(fileName);
+
+        // when
+        documentWriter.write(expected);
+        String actual = documentWriter.read();
+
+        // then
+        Assert.assertEquals(expected, actual);
+
+    }
 }

@@ -98,11 +98,11 @@ public class Document implements DocumentInterface {
 
     @Override
     public File getFile() {
-        return null;
+        return file.getAbsoluteFile();
     }
 
     @Override
     public String toString() {
-        return null;
+        return file.getPath().replace("\\","/")+"{"+read()+"}";
     }
 }

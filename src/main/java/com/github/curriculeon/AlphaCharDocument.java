@@ -12,9 +12,16 @@ public class AlphaCharDocument extends Document {
 
     @Override
     public void write(String contentToBeWritten) {
+        if (isAlpha(contentToBeWritten)) {
+            super.write(contentToBeWritten);
+            return;
+        }
+        throw new IllegalArgumentException(contentToBeWritten);
     }
 
     private Boolean isAlpha(String s) {
-        return null;
+        String regex  = "^[a-zA-Z\\s]*$";
+        System.out.println(s +s.matches(regex));
+        return s.matches(regex);
     }
 }
