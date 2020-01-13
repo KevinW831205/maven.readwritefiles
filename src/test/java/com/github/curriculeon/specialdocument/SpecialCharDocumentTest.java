@@ -57,6 +57,17 @@ public class SpecialCharDocumentTest {
         documentWriter.write(contentToBeWritten);
     }
 
+    @Test
+    public void writeSpecialCharacter3() throws IOException {
+        // given
+        String fileName = "target/file.txt";
+        String contentToBeWritten = "\\";
+        Document documentWriter = new SpecialCharDocument(fileName);
+
+        // when
+        documentWriter.write(contentToBeWritten);
+    }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void writeAlphaValuesTest() throws IOException {
