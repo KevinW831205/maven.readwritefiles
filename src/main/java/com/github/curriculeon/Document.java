@@ -45,7 +45,8 @@ public class Document implements DocumentInterface {
 
     @Override
     public String read(Integer lineNumber) {
-        return null;
+        List<String> myList = toList();
+        return myList.get(lineNumber);
     }
 
     @Override
