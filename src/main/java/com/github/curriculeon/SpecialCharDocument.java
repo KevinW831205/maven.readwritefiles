@@ -20,7 +20,7 @@ public class SpecialCharDocument extends Document {
     }
 
     private Boolean isSpecialCharacters(String s) {
-        String regex = "^[!@#$%^&*(),.?\":;'{}|<>_+=[\\\\][\\-]]*$";
+        String regex = "^[!@#$%^&*(),.?\":;'{}|<>_+=\\\\\\-]*$";
         return s.matches(regex);
     }
 }
